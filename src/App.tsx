@@ -31,18 +31,19 @@ export default function App() {
       {/* SEO Metadata (React 19 Native Support) */}
       <title>Kita Gagal - Komunitas Pengusaha Gagal</title>
       <meta name="description" content="Bergabunglah dengan komunitas pengusaha gagal. Rayakan kebangkrutan, belajar dari kesalahan, dan tertawa di atas kerugian." />
+      <link rel="canonical" href="https://kitagagal.vercel.app/" />
       <meta name="keywords" content="startup gagal, komunitas gagal, bisnis bangkrut, belajar dari kegagalan, motivasi lucu" />
       
       {/* Open Graph / Facebook */}
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://kitagagal.com/" />
+      <meta property="og:url" content="https://kitagagal.vercel.app/" />
       <meta property="og:title" content="Kita Gagal - Rayakan Kebangkrutanmu" />
       <meta property="og:description" content="Sukses itu klise. Kami merayakan setiap kerugian, salah strategi, dan kebangkrutan dengan bangga." />
       <meta property="og:image" content="https://images.unsplash.com/photo-1593642532744-d377ab507dc8?q=80&w=2069&auto=format&fit=crop" />
 
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content="https://kitagagal.com/" />
+      <meta property="twitter:url" content="https://kitagagal.vercel.app/" />
       <meta property="twitter:title" content="Kita Gagal - Rayakan Kebangkrutanmu" />
       <meta property="twitter:description" content="Sukses itu klise. Kami merayakan setiap kerugian, salah strategi, dan kebangkrutan dengan bangga." />
       <meta property="twitter:image" content="https://images.unsplash.com/photo-1593642532744-d377ab507dc8?q=80&w=2069&auto=format&fit=crop" />
@@ -79,7 +80,7 @@ export default function App() {
       {/* Hero Section */}
       <section ref={targetRef} className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 overflow-hidden">
         {/* Faded Grid Background */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-5xl [mask-image:radial-gradient(ellipse_at_top,white_20%,transparent_70%)]">
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
           </div>
@@ -129,14 +130,14 @@ export default function App() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full md:w-auto px-8 py-4 text-lg font-bold text-white bg-sky-500 rounded-full shadow-xl shadow-sky-200 hover:bg-sky-600 transition-all"
+              className="w-full md:w-auto px-8 py-4 text-lg font-bold text-white bg-sky-500 rounded-full shadow-xl shadow-sky-200 hover:bg-sky-600 transition-all cursor-pointer"
             >
               Donasi agar kami sukses
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full md:w-auto px-8 py-4 text-lg font-bold text-slate-700 bg-white border border-slate-200 rounded-full hover:bg-slate-50 transition-all"
+              className="w-full md:w-auto px-8 py-4 text-lg font-bold text-slate-700 bg-white border border-slate-200 rounded-full hover:bg-slate-50 transition-all cursor-pointer"
             >
               Lihat portofolio gagal
             </motion.button>
@@ -145,7 +146,7 @@ export default function App() {
       </section>
 
       {/* Marquee / Social Proof (Irony) */}
-      <div className="bg-sky-50 py-12 overflow-hidden border-y border-sky-100">
+      <div className="bg-sky-50 py-12 overflow-hidden border-y border-sky-100" aria-hidden="true">
         <div className="flex gap-16 animate-marquee whitespace-nowrap">
            {[...Array(2)].map((_, i) => (
              <div key={i} className="flex gap-16 items-center text-sky-900/40 text-2xl font-bold uppercase tracking-widest">
@@ -205,8 +206,9 @@ export default function App() {
              className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl"
           >
              <img 
-               src="https://images.unsplash.com/photo-1593642532744-d377ab507dc8?q=80&w=2069&auto=format&fit=crop" 
-               alt="Frustrated developer" 
+               src="https://images.unsplash.com/photo-1593642532744-d377ab507dc8?q=80&w=800&auto=format&fit=crop" 
+               alt="Pengembang yang sedang frustrasi di depan laptop" 
+               loading="lazy"
                className="w-full h-full object-cover"
              />
              <div className="absolute inset-0 bg-gradient-to-t from-sky-900/80 to-transparent flex items-end p-8">
@@ -240,7 +242,7 @@ export default function App() {
                 transition={{ delay: i * 0.2, duration: 0.5 }}
                 className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-shadow"
               >
-                <div className="text-5xl mb-6">{item.icon}</div>
+                <div className="text-5xl mb-6" aria-hidden="true">{item.icon}</div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
                 <p className="text-slate-600 leading-relaxed">{item.desc}</p>
               </motion.div>
@@ -257,7 +259,7 @@ export default function App() {
               <h2 className="text-4xl font-bold text-slate-900 mb-4">Galeri Error</h2>
               <p className="text-slate-600 text-lg">Keindahan dalam ketidaksempurnaan visual.</p>
             </div>
-            <button className="text-sky-600 font-bold hover:underline">Lihat Semua Kegagalan &rarr;</button>
+            <button className="text-sky-600 font-bold hover:underline cursor-pointer">Lihat Semua Kegagalan &rarr;</button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 h-[600px] md:h-[400px]">
@@ -266,8 +268,9 @@ export default function App() {
               className="md:col-span-2 relative rounded-2xl overflow-hidden group"
             >
                <img 
-                 src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" 
-                 alt="Coding screen" 
+                 src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop" 
+                 alt="Tampilan kode pemrograman yang rumit" 
+                 loading="lazy"
                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                />
                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -279,8 +282,9 @@ export default function App() {
                className="relative rounded-2xl overflow-hidden group"
             >
                <img 
-                 src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop" 
-                 alt="Laptop crash" 
+                 src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format&fit=crop" 
+                 alt="Laptop dengan layar biru atau error" 
+                 loading="lazy"
                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                />
                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -292,8 +296,9 @@ export default function App() {
                className="relative rounded-2xl overflow-hidden group"
             >
                <img 
-                 src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?q=80&w=1974&auto=format&fit=crop" 
-                 alt="Coffee spill" 
+                 src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?q=80&w=600&auto=format&fit=crop" 
+                 alt="Kopi yang tumpah di atas meja kerja" 
+                 loading="lazy"
                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                />
                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -319,21 +324,21 @@ export default function App() {
                 role: "Ex-Founder Startup Lele",
                 amount: "Rp 50.000",
                 quote: "Saya donasi karena kasihan, bukan karena percaya. Semoga buat beli kopi sachet, bukan buat sewa server AWS yang lupa dimatiin.",
-                image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop"
+                image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop"
               },
               {
                 name: "Siti Aminah",
                 role: "Korban Investasi Bodong",
                 amount: "Rp 25.000",
                 quote: "Setidaknya donasi ke sini jelas peruntukannya: untuk merayakan kegagalan. Lebih transparan daripada laporan keuangan startup saya dulu.",
-                image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop"
+                image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop"
               },
               {
                 name: "Kevin Anggara",
                 role: "Mahasiswa Abadi",
                 amount: "Rp 10.000",
                 quote: "Uang sisa jajan cilok. Saya donasi biar kalian semangat gagalnya, biar saya ada temannya.",
-                image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop"
+                image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop"
               }
             ].map((item, i) => (
               <motion.div
@@ -344,10 +349,10 @@ export default function App() {
                 transition={{ delay: i * 0.2, duration: 0.5 }}
                 className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm relative"
               >
-                <div className="absolute top-8 right-8 text-6xl text-sky-100 font-serif leading-none">"</div>
+                <div className="absolute top-8 right-8 text-6xl text-sky-100 font-serif leading-none" aria-hidden="true">"</div>
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-sky-100">
-                    <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                    <img src={item.image} alt={`Foto profil ${item.name}`} className="w-full h-full object-cover" loading="lazy" />
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900">{item.name}</h4>
@@ -366,7 +371,7 @@ export default function App() {
 
       {/* CTA Section */}
       <section className="py-32 px-6 bg-sky-900 relative overflow-hidden text-center">
-        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" aria-hidden="true"></div>
         <div className="relative z-10 max-w-3xl mx-auto space-y-8">
            <motion.h2 
              initial={{ opacity: 0, scale: 0.9 }}
@@ -385,7 +390,7 @@ export default function App() {
              whileHover={{ scale: 1.05 }}
              whileTap={{ scale: 0.95 }}
            >
-             <button className="px-10 py-5 bg-white text-sky-900 text-xl font-bold rounded-full shadow-2xl hover:bg-sky-50 transition-colors">
+             <button className="px-10 py-5 bg-white text-sky-900 text-xl font-bold rounded-full shadow-2xl hover:bg-sky-50 transition-colors cursor-pointer">
                Donasi Agar Kami Sukses
              </button>
            </motion.div>
@@ -401,9 +406,13 @@ export default function App() {
               Komunitas pengembang yang bangga akan setiap error, typo, dan logic fallacy yang kami buat.
             </p>
             <div className="flex gap-4">
-               {['Twitter', 'GitHub', 'LinkedIn'].map((social) => (
-                 <a key={social} href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-sky-600 hover:text-white transition-all">
-                   {social[0]}
+               {[
+                 { name: 'Twitter', label: 'Ikuti kami di Twitter' },
+                 { name: 'GitHub', label: 'Lihat proyek kami di GitHub' },
+                 { name: 'LinkedIn', label: 'Hubungkan dengan kami di LinkedIn' }
+               ].map((social) => (
+                 <a key={social.name} href="#" aria-label={social.label} className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-sky-600 hover:text-white transition-all">
+                   {social.name[0]}
                  </a>
                ))}
             </div>
