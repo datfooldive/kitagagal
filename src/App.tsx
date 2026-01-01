@@ -28,6 +28,25 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 overflow-x-hidden selection:bg-sky-200">
       
+      {/* SEO Metadata (React 19 Native Support) */}
+      <title>Kita Gagal - Komunitas Pengusaha Gagal</title>
+      <meta name="description" content="Bergabunglah dengan komunitas pengusaha gagal. Rayakan kebangkrutan, belajar dari kesalahan, dan tertawa di atas kerugian." />
+      <meta name="keywords" content="startup gagal, komunitas gagal, bisnis bangkrut, belajar dari kegagalan, motivasi lucu" />
+      
+      {/* Open Graph / Facebook */}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://kitagagal.com/" />
+      <meta property="og:title" content="Kita Gagal - Rayakan Kebangkrutanmu" />
+      <meta property="og:description" content="Sukses itu klise. Kami merayakan setiap kerugian, salah strategi, dan kebangkrutan dengan bangga." />
+      <meta property="og:image" content="https://images.unsplash.com/photo-1593642532744-d377ab507dc8?q=80&w=2069&auto=format&fit=crop" />
+
+      {/* Twitter */}
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:url" content="https://kitagagal.com/" />
+      <meta property="twitter:title" content="Kita Gagal - Rayakan Kebangkrutanmu" />
+      <meta property="twitter:description" content="Sukses itu klise. Kami merayakan setiap kerugian, salah strategi, dan kebangkrutan dengan bangga." />
+      <meta property="twitter:image" content="https://images.unsplash.com/photo-1593642532744-d377ab507dc8?q=80&w=2069&auto=format&fit=crop" />
+
       {/* Sticky Navbar */}
       <motion.nav 
         initial={{ y: -100 }}
