@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
+import { useTheme } from './hooks/useTheme';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -16,6 +17,7 @@ const staggerContainer = {
 };
 
 export default function App() {
+  const { theme, toggleTheme } = useTheme();
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -26,7 +28,7 @@ export default function App() {
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 overflow-x-hidden selection:bg-sky-200">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 overflow-x-hidden selection:bg-sky-200 dark:selection:bg-sky-900 transition-colors duration-300">
       
       {/* SEO Metadata (React 19 Native Support) */}
       <title>Kita Gagal - Komunitas Pengusaha Gagal</title>
@@ -53,27 +55,38 @@ export default function App() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100"
+        className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800"
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
               !
             </div>
-            <span className="text-xl font-bold tracking-tight text-slate-900">kita gagal.</span>
+            <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">kita gagal.</span>
           </div>
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-            <a href="#filosofi" className="hover:text-sky-600 transition-colors">Filosofi</a>
-            <a href="#timeline" className="hover:text-sky-600 transition-colors">Jejak Kegagalan</a>
-            <a href="#tim" className="hover:text-sky-600 transition-colors">Tim Gagal</a>
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-400">
+            <a href="#filosofi" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Filosofi</a>
+            <a href="#timeline" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Jejak Kegagalan</a>
+            <a href="#tim" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Tim Gagal</a>
           </div>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-5 py-2.5 text-sm font-bold text-white bg-sky-500 rounded-full hover:bg-sky-600 transition-colors shadow-lg shadow-sky-200"
-          >
-            Donasi Sekarang
-          </motion.button>
+          <div className="flex items-center gap-4">
+            <motion.button
+              onClick={toggleTheme}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-pointer"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? '☀️' : '🌙'}
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="hidden md:block px-5 py-2.5 text-sm font-bold text-white bg-sky-500 rounded-full hover:bg-sky-600 transition-colors shadow-lg shadow-sky-200 dark:shadow-none cursor-pointer"
+            >
+              Donasi Sekarang
+            </motion.button>
+          </div>
         </div>
       </motion.nav>
 
@@ -81,8 +94,8 @@ export default function App() {
       <section ref={targetRef} className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 overflow-hidden">
         {/* Faded Grid Background */}
         <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-5xl [mask-image:radial-gradient(ellipse_at_top,white_20%,transparent_70%)]">
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-5xl [mask-image:radial-gradient(ellipse_at_top,white_20%,transparent_70%)] dark:[mask-image:radial-gradient(ellipse_at_top,white_10%,transparent_60%)]">
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
           </div>
         </div>
 
@@ -94,7 +107,7 @@ export default function App() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-wider text-sky-600 uppercase bg-sky-100 rounded-full"
+            className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-wider text-sky-600 dark:text-sky-300 uppercase bg-sky-100 dark:bg-sky-900/30 rounded-full"
           >
             Komunitas Pecinta Kegagalan
           </motion.div>
@@ -103,10 +116,10 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-slate-900 mb-8"
+            className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-8"
           >
             Rayakan setiap <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600 dark:from-sky-300 dark:to-blue-500">
               kegagalanmu.
             </span>
           </motion.h1>
@@ -115,7 +128,7 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="max-w-2xl mx-auto text-lg md:text-xl text-slate-600 mb-10 leading-relaxed"
+            className="max-w-2xl mx-auto text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 leading-relaxed"
           >
             Sukses itu membosankan. Kegagalan mengajarkan kita arti bertahan hidup, 
             memperbaiki bug kehidupan, dan tertawa di atas error log yang merah membara.
@@ -130,14 +143,14 @@ export default function App() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full md:w-auto px-8 py-4 text-lg font-bold text-white bg-sky-500 rounded-full shadow-xl shadow-sky-200 hover:bg-sky-600 transition-all cursor-pointer"
+              className="w-full md:w-auto px-8 py-4 text-lg font-bold text-white bg-sky-500 dark:bg-sky-600 rounded-full shadow-xl shadow-sky-200 dark:shadow-none hover:bg-sky-600 dark:hover:bg-sky-500 transition-all cursor-pointer"
             >
               Donasi agar kami sukses
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full md:w-auto px-8 py-4 text-lg font-bold text-slate-700 bg-white border border-slate-200 rounded-full hover:bg-slate-50 transition-all cursor-pointer"
+              className="w-full md:w-auto px-8 py-4 text-lg font-bold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full hover:bg-slate-50 dark:hover:bg-slate-700 transition-all cursor-pointer"
             >
               Lihat portofolio gagal
             </motion.button>
@@ -146,10 +159,10 @@ export default function App() {
       </section>
 
       {/* Marquee / Social Proof (Irony) */}
-      <div className="bg-sky-50 py-12 overflow-hidden border-y border-sky-100" aria-hidden="true">
+      <div className="bg-sky-50 dark:bg-slate-900/50 py-12 overflow-hidden border-y border-sky-100 dark:border-slate-800" aria-hidden="true">
         <div className="flex gap-16 animate-marquee whitespace-nowrap">
            {[...Array(2)].map((_, i) => (
-             <div key={i} className="flex gap-16 items-center text-sky-900/40 text-2xl font-bold uppercase tracking-widest">
+             <div key={i} className="flex gap-16 items-center text-sky-900/40 dark:text-sky-100/20 text-2xl font-bold uppercase tracking-widest">
                <span>404 Not Found</span>
                <span>•</span>
                <span>Server Error 500</span>
@@ -168,7 +181,7 @@ export default function App() {
       </div>
 
       {/* Philosophy Section */}
-      <section id="filosofi" className="py-24 px-6 bg-white">
+      <section id="filosofi" className="py-24 px-6 bg-white dark:bg-slate-900 transition-colors">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <motion.div 
             initial="initial"
@@ -177,23 +190,23 @@ export default function App() {
             variants={staggerContainer}
             className="space-y-8"
           >
-            <motion.h2 variants={fadeInUp} className="text-4xl font-bold text-slate-900">
-              Kenapa harus <span className="text-sky-500">takut gagal?</span>
+            <motion.h2 variants={fadeInUp} className="text-4xl font-bold text-slate-900 dark:text-white">
+              Kenapa harus <span className="text-sky-500 dark:text-sky-400">takut gagal?</span>
             </motion.h2>
-            <motion.p variants={fadeInUp} className="text-lg text-slate-600 leading-relaxed">
+            <motion.p variants={fadeInUp} className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
               Di "Kita Gagal", kami percaya bahwa setiap error code adalah puisi yang belum selesai. 
               Setiap proyek yang mangkrak adalah monumen pembelajaran. Kami tidak menyembunyikan 
               kebodohan kami; kami memamerkannya.
             </motion.p>
             
             <motion.div variants={fadeInUp} className="grid grid-cols-2 gap-6">
-              <div className="p-6 bg-sky-50 rounded-2xl border border-sky-100">
-                <h3 className="text-3xl font-bold text-sky-600 mb-2">1,024+</h3>
-                <p className="text-sm font-medium text-slate-600">Proyek Mangkrak</p>
+              <div className="p-6 bg-sky-50 dark:bg-slate-800/50 rounded-2xl border border-sky-100 dark:border-slate-800">
+                <h3 className="text-3xl font-bold text-sky-600 dark:text-sky-400 mb-2">1,024+</h3>
+                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Proyek Mangkrak</p>
               </div>
-              <div className="p-6 bg-sky-50 rounded-2xl border border-sky-100">
-                <h3 className="text-3xl font-bold text-sky-600 mb-2">∞</h3>
-                <p className="text-sm font-medium text-slate-600">Bug Diciptakan</p>
+              <div className="p-6 bg-sky-50 dark:bg-slate-800/50 rounded-2xl border border-sky-100 dark:border-slate-800">
+                <h3 className="text-3xl font-bold text-sky-600 dark:text-sky-400 mb-2">∞</h3>
+                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Bug Diciptakan</p>
               </div>
             </motion.div>
           </motion.div>
@@ -203,7 +216,7 @@ export default function App() {
              whileInView={{ opacity: 1, x: 0 }}
              viewport={{ once: true }}
              transition={{ duration: 0.8 }}
-             className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl"
+             className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl shadow-sky-100 dark:shadow-none"
           >
              <img 
                src="https://images.unsplash.com/photo-1593642532744-d377ab507dc8?q=80&w=800&auto=format&fit=crop" 
@@ -222,11 +235,11 @@ export default function App() {
       </section>
 
       {/* Feature/Steps Section */}
-      <section id="timeline" className="py-24 px-6 bg-slate-50">
+      <section id="timeline" className="py-24 px-6 bg-slate-50 dark:bg-slate-950 transition-colors">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Siklus Hidup Kami</h2>
-            <p className="text-slate-600 text-lg">Proses yang kami ulangi setiap hari tanpa rasa jera.</p>
+            <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">Siklus Hidup Kami</h2>
+            <p className="text-slate-600 dark:text-slate-400 text-lg">Proses yang kami ulangi setiap hari tanpa rasa jera.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -241,11 +254,11 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.2, duration: 0.5 }}
-                className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-shadow"
+                className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl dark:shadow-slate-900/50 transition-all"
               >
                 <div className="text-5xl mb-6" aria-hidden="true">{item.icon}</div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
-                <p className="text-slate-600 leading-relaxed">{item.desc}</p>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">{item.title}</h3>
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -253,14 +266,14 @@ export default function App() {
       </section>
 
       {/* Gallery Section */}
-      <section className="py-24 px-6 bg-white overflow-hidden">
+      <section className="py-24 px-6 bg-white dark:bg-slate-900 overflow-hidden transition-colors">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
-              <h2 className="text-4xl font-bold text-slate-900 mb-4">Galeri Error</h2>
-              <p className="text-slate-600 text-lg">Keindahan dalam ketidaksempurnaan visual.</p>
+              <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">Galeri Error</h2>
+              <p className="text-slate-600 dark:text-slate-400 text-lg">Keindahan dalam ketidaksempurnaan visual.</p>
             </div>
-            <button className="text-sky-600 font-bold hover:underline cursor-pointer">Lihat Semua Kegagalan &rarr;</button>
+            <button className="text-sky-600 dark:text-sky-400 font-bold hover:underline cursor-pointer">Lihat Semua Kegagalan &rarr;</button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 h-[600px] md:h-[400px]">
@@ -314,11 +327,11 @@ export default function App() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-24 px-6 bg-slate-50">
+      <section className="py-24 px-6 bg-slate-50 dark:bg-slate-950 transition-colors">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Kata Mereka Yang Khilaf Donasi</h2>
-            <p className="text-slate-600 text-lg">Para dermawan yang terlanjur transfer dan tidak bisa refund.</p>
+            <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">Kata Mereka Yang Khilaf Donasi</h2>
+            <p className="text-slate-600 dark:text-slate-400 text-lg">Para dermawan yang terlanjur transfer dan tidak bisa refund.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -351,22 +364,22 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.2, duration: 0.5 }}
-                className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm relative"
+                className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm relative"
               >
-                <div className="absolute top-8 right-8 text-6xl text-sky-100 font-serif leading-none" aria-hidden="true">"</div>
+                <div className="absolute top-8 right-8 text-6xl text-sky-100 dark:text-sky-900/50 font-serif leading-none" aria-hidden="true">"</div>
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-sky-100">
+                  <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-sky-100 dark:border-slate-700">
                     <img src={item.image} alt={`Foto profil ${item.name}`} title={`Foto profil ${item.name}`} className="w-full h-full object-cover" loading="lazy" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900">{item.name}</h4>
-                    <p className="text-xs text-slate-500">{item.role}</p>
-                    <span className="inline-block mt-1 px-2 py-0.5 bg-sky-100 text-sky-700 text-xs font-bold rounded-full">
+                    <h4 className="font-bold text-slate-900 dark:text-white">{item.name}</h4>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">{item.role}</p>
+                    <span className="inline-block mt-1 px-2 py-0.5 bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300 text-xs font-bold rounded-full">
                       Donasi: {item.amount}
                     </span>
                   </div>
                 </div>
-                <p className="text-slate-600 italic relative z-10">{item.quote}</p>
+                <p className="text-slate-600 dark:text-slate-400 italic relative z-10">{item.quote}</p>
               </motion.div>
             ))}
           </div>
@@ -374,7 +387,7 @@ export default function App() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 px-6 bg-sky-900 relative overflow-hidden text-center">
+      <section className="py-32 px-6 bg-sky-900 dark:bg-sky-950 relative overflow-hidden text-center transition-colors">
         <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" aria-hidden="true"></div>
         <div className="relative z-10 max-w-3xl mx-auto space-y-8">
            <motion.h2 
@@ -402,7 +415,7 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-slate-400 py-16 px-6 border-t border-slate-800">
+      <footer className="bg-slate-900 dark:bg-slate-950 text-slate-400 py-16 px-6 border-t border-slate-800 transition-colors">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-2">
             <h3 className="text-2xl font-bold text-white mb-4">kita gagal.</h3>
@@ -415,7 +428,7 @@ export default function App() {
                  { name: 'GitHub', label: 'Lihat proyek kami di GitHub' },
                  { name: 'LinkedIn', label: 'Hubungkan dengan kami di LinkedIn' }
                ].map((social) => (
-                 <a key={social.name} href="#" aria-label={social.label} className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-sky-600 hover:text-white transition-all">
+                 <a key={social.name} href="#" aria-label={social.label} className="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-900 flex items-center justify-center hover:bg-sky-600 hover:text-white transition-all">
                    {social.name[0]}
                  </a>
                ))}
