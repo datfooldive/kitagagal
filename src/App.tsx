@@ -50,13 +50,11 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 overflow-x-hidden selection:bg-sky-200 dark:selection:bg-sky-900 transition-colors duration-300">
-      {/* SEO Metadata */}
       <title>{t("meta.title")}</title>
       <meta name="description" content={t("meta.description")} />
       <link rel="canonical" href="https://kitagagal.vercel.app/" />
       <meta name="keywords" content={t("meta.keywords")} />
 
-      {/* Open Graph / Facebook */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://kitagagal.vercel.app/" />
       <meta property="og:title" content={t("meta.title")} />
@@ -66,7 +64,6 @@ export default function App() {
         content="https://images.unsplash.com/photo-1593642532744-d377ab507dc8?q=80&w=2069&auto=format&fit=crop"
       />
 
-      {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content="https://kitagagal.vercel.app/" />
       <meta property="twitter:title" content={t("meta.title")} />
@@ -76,7 +73,6 @@ export default function App() {
         content="https://images.unsplash.com/photo-1593642532744-d377ab507dc8?q=80&w=2069&auto=format&fit=crop"
       />
 
-      {/* Sticky Navbar */}
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -152,12 +148,10 @@ export default function App() {
         </div>
       </motion.nav>
 
-      {/* Hero Section */}
       <section
         ref={targetRef}
         className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 overflow-hidden"
       >
-        {/* Faded Grid Background */}
         <div
           className="absolute inset-0 z-0 pointer-events-none"
           aria-hidden="true"
@@ -225,7 +219,6 @@ export default function App() {
         </motion.div>
       </section>
 
-      {/* Marquee / Social Proof (Irony) */}
       <div
         className="bg-sky-50 dark:bg-slate-900/50 py-12 overflow-hidden border-y border-sky-100 dark:border-slate-800"
         aria-hidden="true"
@@ -242,7 +235,6 @@ export default function App() {
         </div>
       </div>
 
-      {/* Philosophy Section */}
       <section
         id="filosofi"
         className="py-24 px-6 bg-white dark:bg-slate-900 transition-colors"
@@ -314,7 +306,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Feature/Steps Section */}
       <section
         id="timeline"
         className="py-24 px-6 bg-slate-50 dark:bg-slate-950 transition-colors"
@@ -388,7 +379,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Gallery Section */}
       <section className="py-24 px-6 bg-white dark:bg-slate-900 overflow-hidden transition-colors">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
@@ -465,7 +455,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
       <section className="py-24 px-6 bg-slate-50 dark:bg-slate-950 transition-colors">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -549,7 +538,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-32 px-6 bg-sky-900 dark:bg-sky-950 relative overflow-hidden text-center transition-colors">
         <div
           className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"
@@ -578,7 +566,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-slate-900 dark:bg-slate-950 text-slate-400 py-16 px-6 border-t border-slate-800 transition-colors">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-2">
@@ -665,7 +652,6 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Global Styles for specific animations */}
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0); }

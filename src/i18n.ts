@@ -14,7 +14,11 @@ i18n
     },
     fallbackLng: 'id',
     interpolation: {
-      escapeValue: false // not needed for react as it escapes by default
+      escapeValue: false
+    },
+    detection: {
+      order: ['localStorage', 'navigator'],
+      caches: ['localStorage']
     }
   });
 
