@@ -208,6 +208,7 @@ export default function App() {
              <img 
                src="https://images.unsplash.com/photo-1593642532744-d377ab507dc8?q=80&w=800&auto=format&fit=crop" 
                alt="Pengembang yang sedang frustrasi di depan laptop" 
+               title="Pengembang yang sedang frustrasi di depan laptop"
                loading="lazy"
                className="w-full h-full object-cover"
              />
@@ -270,6 +271,7 @@ export default function App() {
                <img 
                  src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop" 
                  alt="Tampilan kode pemrograman yang rumit" 
+                 title="Tampilan kode pemrograman yang rumit"
                  loading="lazy"
                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                />
@@ -284,6 +286,7 @@ export default function App() {
                <img 
                  src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format&fit=crop" 
                  alt="Laptop dengan layar biru atau error" 
+                 title="Laptop dengan layar biru atau error"
                  loading="lazy"
                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                />
@@ -298,6 +301,7 @@ export default function App() {
                <img 
                  src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?q=80&w=600&auto=format&fit=crop" 
                  alt="Kopi yang tumpah di atas meja kerja" 
+                 title="Kopi yang tumpah di atas meja kerja"
                  loading="lazy"
                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                />
@@ -352,7 +356,7 @@ export default function App() {
                 <div className="absolute top-8 right-8 text-6xl text-sky-100 font-serif leading-none" aria-hidden="true">"</div>
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-sky-100">
-                    <img src={item.image} alt={`Foto profil ${item.name}`} className="w-full h-full object-cover" loading="lazy" />
+                    <img src={item.image} alt={`Foto profil ${item.name}`} title={`Foto profil ${item.name}`} className="w-full h-full object-cover" loading="lazy" />
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900">{item.name}</h4>
