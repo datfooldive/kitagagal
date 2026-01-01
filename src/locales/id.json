@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "title": "Kita Gagal - Komunitas Pengusaha Gagal",
+    "description": "Bergabunglah dengan komunitas pengusaha gagal. Rayakan kebangkrutan, belajar dari kesalahan, dan tertawa di atas kerugian.",
+    "keywords": "startup gagal, komunitas gagal, bisnis bangkrut, belajar dari kegagalan, motivasi lucu"
+  },
+  "nav": {
+    "philosophy": "Filosofi",
+    "timeline": "Jejak Kegagalan",
+    "team": "Tim Gagal",
+    "donate": "Donasi Sekarang",
+    "switch_lang": "Ganti Bahasa"
+  },
+  "hero": {
+    "badge": "Komunitas Pecinta Kegagalan",
+    "title_start": "Rayakan setiap",
+    "title_highlight": "kegagalanmu.",
+    "subtitle": "Sukses itu membosankan. Kegagalan mengajarkan kita arti bertahan hidup, memperbaiki bug kehidupan, dan tertawa di atas error log yang merah membara.",
+    "cta_primary": "Donasi agar kami sukses",
+    "cta_secondary": "Lihat portofolio gagal"
+  },
+  "marquee": {
+    "text": "404 Not Found • Server Error 500 • Build Failed • Runtime Error • Stack Overflow • Undefined is not a function •"
+  },
+  "philosophy": {
+    "title_start": "Kenapa harus",
+    "title_highlight": "takut gagal?",
+    "desc": "Di \"Kita Gagal\", kami percaya bahwa setiap error code adalah puisi yang belum selesai. Setiap proyek yang mangkrak adalah monumen pembelajaran. Kami tidak menyembunyikan kebodohan kami; kami memamerkannya.",
+    "stat_projects": "Proyek Mangkrak",
+    "stat_bugs": "Bug Diciptakan",
+    "image_alt": "Pengembang yang sedang frustrasi di depan laptop",
+    "image_caption": "\"Saya mencoba memperbaiki satu bug, dan melahirkan sepuluh bug baru. Indah sekali.\""
+  },
+  "timeline": {
+    "title": "Siklus Hidup Kami",
+    "subtitle": "Proses yang kami ulangi setiap hari tanpa rasa jera.",
+    "step1_title": "Mulai Semangat",
+    "step1_desc": "Punya ide brilian jam 2 pagi, langsung coding tanpa dokumentasi.",
+    "step2_title": "Mulai Bingung",
+    "step2_desc": "Kenapa kodenya jalan tapi hasilnya salah? Copilot pun menyerah.",
+    "step3_title": "Mulai Ulang",
+    "step3_desc": "Hapus repo, uninstall VS Code, merenung di pojokan, lalu mulai lagi."
+  },
+  "gallery": {
+    "title": "Galeri Error",
+    "subtitle": "Keindahan dalam ketidaksempurnaan visual.",
+    "see_all": "Lihat Semua Kegagalan",
+    "img1_alt": "Tampilan kode pemrograman yang rumit",
+    "img1_label": "Spaghetti Code v1",
+    "img2_alt": "Laptop dengan layar biru atau error",
+    "img2_label": "Blue Screen",
+    "img3_alt": "Kopi yang tumpah di atas meja kerja",
+    "img3_label": "Kopi Tumpah"
+  },
+  "testimonials": {
+    "title": "Kata Mereka Yang Khilaf Donasi",
+    "subtitle": "Para dermawan yang terlanjur transfer dan tidak bisa refund.",
+    "person1_role": "Ex-Founder Startup Lele",
+    "person1_quote": "Saya donasi karena kasihan, bukan karena percaya. Semoga buat beli kopi sachet, bukan buat sewa server AWS yang lupa dimatiin.",
+    "person2_role": "Korban Investasi Bodong",
+    "person2_quote": "Setidaknya donasi ke sini jelas peruntukannya: untuk merayakan kegagalan. Lebih transparan daripada laporan keuangan startup saya dulu.",
+    "person3_role": "Mahasiswa Abadi",
+    "person3_quote": "Uang sisa jajan cilok. Saya donasi biar kalian semangat gagalnya, biar saya ada temannya.",
+    "donation_label": "Donasi"
+  },
+  "cta": {
+    "title_start": "Bantu kami berhenti gagal.",
+    "title_highlight": "Atau setidaknya gagal dengan gaya.",
+    "desc": "Donasimu akan digunakan untuk membeli kopi berkualitas, keyboard mekanikal yang lebih berisik, dan langganan kursus coding yang tidak pernah kami selesaikan.",
+    "button": "Donasi Agar Kami Sukses"
+  },
+  "footer": {
+    "desc": "Komunitas pengembang yang bangga akan setiap error, typo, dan logic fallacy yang kami buat.",
+    "nav_header": "Navigasi",
+    "home": "Beranda",
+    "about": "Tentang Kami",
+    "trace": "Jejak Kegagalan",
+    "contact_header": "Hubungi Kami",
+    "copyright": "© 2026 Kita Gagal. All rights reserved (maybe).",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Failure",
+    "social": {
+      "twitter": "Ikuti kami di Twitter",
+      "github": "Lihat proyek kami di GitHub",
+      "linkedin": "Hubungkan dengan kami di LinkedIn"
+    }
+  }
+}

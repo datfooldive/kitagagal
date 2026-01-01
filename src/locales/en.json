@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "title": "Kita Gagal - Failure Enthusiast Community",
+    "description": "Join the community of failed entrepreneurs. Celebrate bankruptcy, learn from mistakes, and laugh at losses.",
+    "keywords": "startup failure, failure community, bankrupt business, learn from failure, funny motivation"
+  },
+  "nav": {
+    "philosophy": "Philosophy",
+    "timeline": "Trace of Failure",
+    "team": "Team Failure",
+    "donate": "Donate Now",
+    "switch_lang": "Switch Language"
+  },
+  "hero": {
+    "badge": "Failure Enthusiast Community",
+    "title_start": "Celebrate every",
+    "title_highlight": "failure.",
+    "subtitle": "Success is boring. Failure teaches us the meaning of survival, fixing life's bugs, and laughing at the red glowing error logs.",
+    "cta_primary": "Donate so we succeed",
+    "cta_secondary": "View failed portfolio"
+  },
+  "marquee": {
+    "text": "404 Not Found • Server Error 500 • Build Failed • Runtime Error • Stack Overflow • Undefined is not a function •"
+  },
+  "philosophy": {
+    "title_start": "Why be",
+    "title_highlight": "afraid to fail?",
+    "desc": "At \"Kita Gagal\", we believe every error code is an unfinished poem. Every abandoned project is a monument of learning. We don't hide our stupidity; we show it off.",
+    "stat_projects": "Abandoned Projects",
+    "stat_bugs": "Bugs Created",
+    "image_alt": "Frustrated developer in front of a laptop",
+    "image_caption": "\"I tried to fix one bug, and gave birth to ten new ones. Beautiful.\""
+  },
+  "timeline": {
+    "title": "Our Life Cycle",
+    "subtitle": "The process we repeat every day without remorse.",
+    "step1_title": "Start Excited",
+    "step1_desc": "Got a brilliant idea at 2 AM, started coding immediately without documentation.",
+    "step2_title": "Start Confused",
+    "step2_desc": "Why does the code run but the result is wrong? Even Copilot gave up.",
+    "step3_title": "Start Over",
+    "step3_desc": "Delete repo, uninstall VS Code, contemplate in the corner, then start again."
+  },
+  "gallery": {
+    "title": "Error Gallery",
+    "subtitle": "Beauty in visual imperfection.",
+    "see_all": "View All Failures",
+    "img1_alt": "Complex programming code display",
+    "img1_label": "Spaghetti Code v1",
+    "img2_alt": "Laptop with blue screen or error",
+    "img2_label": "Blue Screen",
+    "img3_alt": "Coffee spilled on work desk",
+    "img3_label": "Spilled Coffee"
+  },
+  "testimonials": {
+    "title": "Words from Those Who Mistakenly Donated",
+    "subtitle": "Generous souls who already transferred and cannot refund.",
+    "person1_role": "Ex-Founder Startup Lele",
+    "person1_quote": "I donated out of pity, not belief. Hope it buys sachet coffee, not to rent an AWS server you forgot to turn off.",
+    "person2_role": "Ponzi Scheme Victim",
+    "person2_quote": "At least donating here is clear: to celebrate failure. More transparent than my old startup's financial report.",
+    "person3_role": "Eternal Student",
+    "person3_quote": "Leftover snack money. I donate so you guys stay spirited in failing, so I have company.",
+    "donation_label": "Donation"
+  },
+  "cta": {
+    "title_start": "Help us stop failing.",
+    "title_highlight": "Or at least fail with style.",
+    "desc": "Your donation will be used to buy quality coffee, noisier mechanical keyboards, and coding course subscriptions that we never finish.",
+    "button": "Donate So We Succeed"
+  },
+  "footer": {
+    "desc": "A community of developers proud of every error, typo, and logic fallacy we create.",
+    "nav_header": "Navigation",
+    "home": "Home",
+    "about": "About Us",
+    "trace": "Trace of Failure",
+    "contact_header": "Contact Us",
+    "copyright": "© 2026 Kita Gagal. All rights reserved (maybe).",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Failure",
+    "social": {
+      "twitter": "Follow us on Twitter",
+      "github": "View our projects on GitHub",
+      "linkedin": "Connect with us on LinkedIn"
+    }
+  }
+}

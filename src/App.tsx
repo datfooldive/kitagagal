@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { useTheme } from "./hooks/useTheme";
+import { useTranslation } from "react-i18next";
 import {
   Sun,
   Moon,
@@ -13,6 +14,7 @@ import {
   Linkedin,
   TriangleAlert,
   ArrowRight,
+  Globe,
 } from "lucide-react";
 
 const fadeInUp = {
@@ -31,6 +33,7 @@ const staggerContainer = {
 
 export default function App() {
   const { theme, toggleTheme } = useTheme();
+  const { t, i18n } = useTranslation();
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -40,28 +43,24 @@ export default function App() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
+  const toggleLanguage = () => {
+    const newLang = i18n.language === "id" ? "en" : "id";
+    i18n.changeLanguage(newLang);
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 overflow-x-hidden selection:bg-sky-200 dark:selection:bg-sky-900 transition-colors duration-300">
-      {/* SEO Metadata (React 19 Native Support) */}
-      <title>Kita Gagal - Komunitas Pengusaha Gagal</title>
-      <meta
-        name="description"
-        content="Bergabunglah dengan komunitas pengusaha gagal. Rayakan kebangkrutan, belajar dari kesalahan, dan tertawa di atas kerugian."
-      />
+      {/* SEO Metadata */}
+      <title>{t("meta.title")}</title>
+      <meta name="description" content={t("meta.description")} />
       <link rel="canonical" href="https://kitagagal.vercel.app/" />
-      <meta
-        name="keywords"
-        content="startup gagal, komunitas gagal, bisnis bangkrut, belajar dari kegagalan, motivasi lucu"
-      />
+      <meta name="keywords" content={t("meta.keywords")} />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://kitagagal.vercel.app/" />
-      <meta property="og:title" content="Kita Gagal - Rayakan Kebangkrutanmu" />
-      <meta
-        property="og:description"
-        content="Sukses itu klise. Kami merayakan setiap kerugian, salah strategi, dan kebangkrutan dengan bangga."
-      />
+      <meta property="og:title" content={t("meta.title")} />
+      <meta property="og:description" content={t("meta.description")} />
       <meta
         property="og:image"
         content="https://images.unsplash.com/photo-1593642532744-d377ab507dc8?q=80&w=2069&auto=format&fit=crop"
@@ -70,14 +69,8 @@ export default function App() {
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content="https://kitagagal.vercel.app/" />
-      <meta
-        property="twitter:title"
-        content="Kita Gagal - Rayakan Kebangkrutanmu"
-      />
-      <meta
-        property="twitter:description"
-        content="Sukses itu klise. Kami merayakan setiap kerugian, salah strategi, dan kebangkrutan dengan bangga."
-      />
+      <meta property="twitter:title" content={t("meta.title")} />
+      <meta property="twitter:description" content={t("meta.description")} />
       <meta
         property="twitter:image"
         content="https://images.unsplash.com/photo-1593642532744-d377ab507dc8?q=80&w=2069&auto=format&fit=crop"
@@ -108,22 +101,33 @@ export default function App() {
               href="#filosofi"
               className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
             >
-              Filosofi
+              {t("nav.philosophy")}
             </a>
             <a
               href="#timeline"
               className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
             >
-              Jejak Kegagalan
+              {t("nav.timeline")}
             </a>
             <a
               href="#tim"
               className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
             >
-              Tim Gagal
+              {t("nav.team")}
             </a>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
+            <motion.button
+              onClick={toggleLanguage}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-pointer flex items-center gap-1 font-bold text-xs"
+              aria-label={t("nav.switch_lang")}
+            >
+              <Globe size={18} />
+              <span>{i18n.language.toUpperCase()}</span>
+            </motion.button>
+
             <motion.button
               onClick={toggleTheme}
               whileHover={{ scale: 1.1 }}
@@ -142,7 +146,7 @@ export default function App() {
               whileTap={{ scale: 0.95 }}
               className="hidden md:block px-5 py-2.5 text-sm font-bold text-white bg-sky-500 rounded-full hover:bg-sky-600 transition-colors shadow-lg shadow-sky-200 dark:shadow-none cursor-pointer"
             >
-              Donasi Sekarang
+              {t("nav.donate")}
             </motion.button>
           </div>
         </div>
@@ -173,7 +177,7 @@ export default function App() {
             transition={{ duration: 0.5 }}
             className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-wider text-sky-600 dark:text-sky-300 uppercase bg-sky-100 dark:bg-sky-900/30 rounded-full"
           >
-            Komunitas Pecinta Kegagalan
+            {t("hero.badge")}
           </motion.div>
 
           <motion.h1
@@ -182,9 +186,9 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-8"
           >
-            Rayakan setiap <br />
+            {t("hero.title_start")} <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600 dark:from-sky-300 dark:to-blue-500">
-              kegagalanmu.
+              {t("hero.title_highlight")}
             </span>
           </motion.h1>
 
@@ -194,9 +198,7 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="max-w-2xl mx-auto text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 leading-relaxed"
           >
-            Sukses itu membosankan. Kegagalan mengajarkan kita arti bertahan
-            hidup, memperbaiki bug kehidupan, dan tertawa di atas error log yang
-            merah membara.
+            {t("hero.subtitle")}
           </motion.p>
 
           <motion.div
@@ -210,14 +212,14 @@ export default function App() {
               whileTap={{ scale: 0.95 }}
               className="w-full md:w-auto px-8 py-4 text-lg font-bold text-white bg-sky-500 dark:bg-sky-600 rounded-full shadow-xl shadow-sky-200 dark:shadow-none hover:bg-sky-600 dark:hover:bg-sky-500 transition-all cursor-pointer"
             >
-              Donasi agar kami sukses
+              {t("hero.cta_primary")}
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="w-full md:w-auto px-8 py-4 text-lg font-bold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full hover:bg-slate-50 dark:hover:bg-slate-700 transition-all cursor-pointer"
             >
-              Lihat portofolio gagal
+              {t("hero.cta_secondary")}
             </motion.button>
           </motion.div>
         </motion.div>
@@ -234,18 +236,7 @@ export default function App() {
               key={i}
               className="flex gap-16 items-center text-sky-900/40 dark:text-sky-100/20 text-2xl font-bold uppercase tracking-widest"
             >
-              <span>404 Not Found</span>
-              <span>•</span>
-              <span>Server Error 500</span>
-              <span>•</span>
-              <span>Build Failed</span>
-              <span>•</span>
-              <span>Runtime Error</span>
-              <span>•</span>
-              <span>Stack Overflow</span>
-              <span>•</span>
-              <span>Undefined is not a function</span>
-              <span>•</span>
+              {t("marquee.text")}
             </div>
           ))}
         </div>
@@ -268,19 +259,16 @@ export default function App() {
               variants={fadeInUp}
               className="text-4xl font-bold text-slate-900 dark:text-white"
             >
-              Kenapa harus{" "}
+              {t("philosophy.title_start")}{" "}
               <span className="text-sky-500 dark:text-sky-400">
-                takut gagal?
+                {t("philosophy.title_highlight")}
               </span>
             </motion.h2>
             <motion.p
               variants={fadeInUp}
               className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed"
             >
-              Di "Kita Gagal", kami percaya bahwa setiap error code adalah puisi
-              yang belum selesai. Setiap proyek yang mangkrak adalah monumen
-              pembelajaran. Kami tidak menyembunyikan kebodohan kami; kami
-              memamerkannya.
+              {t("philosophy.desc")}
             </motion.p>
 
             <motion.div variants={fadeInUp} className="grid grid-cols-2 gap-6">
@@ -289,7 +277,7 @@ export default function App() {
                   1,024+
                 </h3>
                 <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
-                  Proyek Mangkrak
+                  {t("philosophy.stat_projects")}
                 </p>
               </div>
               <div className="p-6 bg-sky-50 dark:bg-slate-800/50 rounded-2xl border border-sky-100 dark:border-slate-800">
@@ -297,7 +285,7 @@ export default function App() {
                   ∞
                 </h3>
                 <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
-                  Bug Diciptakan
+                  {t("philosophy.stat_bugs")}
                 </p>
               </div>
             </motion.div>
@@ -312,15 +300,14 @@ export default function App() {
           >
             <img
               src="https://images.unsplash.com/photo-1593642532744-d377ab507dc8?q=80&w=800&auto=format&fit=crop"
-              alt="Pengembang yang sedang frustrasi di depan laptop"
-              title="Pengembang yang sedang frustrasi di depan laptop"
+              alt={t("philosophy.image_alt")}
+              title={t("philosophy.image_alt")}
               loading="lazy"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-sky-900/80 to-transparent flex items-end p-8">
               <p className="text-white text-lg font-medium italic">
-                "Saya mencoba memperbaiki satu bug, and melahirkan sepuluh bug
-                baru. Indah sekali."
+                {t("philosophy.image_caption")}
               </p>
             </div>
           </motion.div>
@@ -335,18 +322,18 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
-              Siklus Hidup Kami
+              {t("timeline.title")}
             </h2>
             <p className="text-slate-600 dark:text-slate-400 text-lg">
-              Proses yang kami ulangi setiap hari tanpa rasa jera.
+              {t("timeline.subtitle")}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: "Mulai Semangat",
-                desc: "Punya ide brilian jam 2 pagi, langsung coding tanpa dokumentasi.",
+                title: t("timeline.step1_title"),
+                desc: t("timeline.step1_desc"),
                 icon: (
                   <Rocket
                     size={48}
@@ -356,8 +343,8 @@ export default function App() {
                 ),
               },
               {
-                title: "Mulai Bingung",
-                desc: "Kenapa kodenya jalan tapi hasilnya salah? Copilot pun menyerah.",
+                title: t("timeline.step2_title"),
+                desc: t("timeline.step2_desc"),
                 icon: (
                   <FileQuestion
                     size={48}
@@ -367,8 +354,8 @@ export default function App() {
                 ),
               },
               {
-                title: "Mulai Ulang",
-                desc: "Hapus repo, uninstall VS Code, merenung di pojokan, lalu mulai lagi.",
+                title: t("timeline.step3_title"),
+                desc: t("timeline.step3_desc"),
                 icon: (
                   <RefreshCcw
                     size={48}
@@ -407,14 +394,14 @@ export default function App() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
               <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                Galeri Error
+                {t("gallery.title")}
               </h2>
               <p className="text-slate-600 dark:text-slate-400 text-lg">
-                Keindahan dalam ketidaksempurnaan visual.
+                {t("gallery.subtitle")}
               </p>
             </div>
             <button className="flex items-center gap-2 text-sky-600 dark:text-sky-400 font-bold hover:underline cursor-pointer group">
-              Lihat Semua Kegagalan{" "}
+              {t("gallery.see_all")}{" "}
               <ArrowRight
                 size={18}
                 className="group-hover:translate-x-1 transition-transform"
@@ -429,14 +416,14 @@ export default function App() {
             >
               <img
                 src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop"
-                alt="Tampilan kode pemrograman yang rumit"
-                title="Tampilan kode pemrograman yang rumit"
+                alt={t("gallery.img1_alt")}
+                title={t("gallery.img1_alt")}
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <span className="text-white font-bold text-xl">
-                  Spaghetti Code v1
+                  {t("gallery.img1_label")}
                 </span>
               </div>
             </motion.div>
@@ -446,14 +433,14 @@ export default function App() {
             >
               <img
                 src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format&fit=crop"
-                alt="Laptop dengan layar biru atau error"
-                title="Laptop dengan layar biru atau error"
+                alt={t("gallery.img2_alt")}
+                title={t("gallery.img2_alt")}
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <span className="text-white font-bold text-xl">
-                  Blue Screen
+                  {t("gallery.img2_label")}
                 </span>
               </div>
             </motion.div>
@@ -463,14 +450,14 @@ export default function App() {
             >
               <img
                 src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?q=80&w=600&auto=format&fit=crop"
-                alt="Kopi yang tumpah di atas meja kerja"
-                title="Kopi yang tumpah di atas meja kerja"
+                alt={t("gallery.img3_alt")}
+                title={t("gallery.img3_alt")}
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <span className="text-white font-bold text-xl">
-                  Kopi Tumpah
+                  {t("gallery.img3_label")}
                 </span>
               </div>
             </motion.div>
@@ -483,10 +470,10 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
-              Kata Mereka Yang Khilaf Donasi
+              {t("testimonials.title")}
             </h2>
             <p className="text-slate-600 dark:text-slate-400 text-lg">
-              Para dermawan yang terlanjur transfer dan tidak bisa refund.
+              {t("testimonials.subtitle")}
             </p>
           </div>
 
@@ -494,28 +481,25 @@ export default function App() {
             {[
               {
                 name: "Budi Santoso",
-                role: "Ex-Founder Startup Lele",
+                role: t("testimonials.person1_role"),
                 amount: "Rp 50.000",
-                quote:
-                  "Saya donasi karena kasihan, bukan karena percaya. Semoga buat beli kopi sachet, bukan buat sewa server AWS yang lupa dimatiin.",
+                quote: t("testimonials.person1_quote"),
                 image:
                   "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop",
               },
               {
                 name: "Siti Aminah",
-                role: "Korban Investasi Bodong",
+                role: t("testimonials.person2_role"),
                 amount: "Rp 25.000",
-                quote:
-                  "Setidaknya donasi ke sini jelas peruntukannya: untuk merayakan kegagalan. Lebih transparan daripada laporan keuangan startup saya dulu.",
+                quote: t("testimonials.person2_quote"),
                 image:
                   "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop",
               },
               {
                 name: "Kevin Anggara",
-                role: "Mahasiswa Abadi",
+                role: t("testimonials.person3_role"),
                 amount: "Rp 10.000",
-                quote:
-                  "Uang sisa jajan cilok. Saya donasi biar kalian semangat gagalnya, biar saya ada temannya.",
+                quote: t("testimonials.person3_quote"),
                 image:
                   "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop",
               },
@@ -552,7 +536,7 @@ export default function App() {
                       {item.role}
                     </p>
                     <span className="inline-block mt-1 px-2 py-0.5 bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300 text-xs font-bold rounded-full">
-                      Donasi: {item.amount}
+                      {t("testimonials.donation_label")}: {item.amount}
                     </span>
                   </div>
                 </div>
@@ -578,19 +562,17 @@ export default function App() {
             transition={{ duration: 0.5 }}
             className="text-4xl md:text-5xl font-bold text-white leading-tight"
           >
-            Bantu kami berhenti gagal. <br />
+            {t("cta.title_start")} <br />
             <span className="text-sky-300">
-              Atau setidaknya gagal dengan gaya.
+              {t("cta.title_highlight")}
             </span>
           </motion.h2>
           <p className="text-sky-100 text-lg">
-            Donasimu akan digunakan untuk membeli kopi berkualitas, keyboard
-            mekanikal yang lebih berisik, dan langganan kursus coding yang tidak
-            pernah kami selesaikan.
+            {t("cta.desc")}
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <button className="px-10 py-5 bg-white text-sky-900 text-xl font-bold rounded-full shadow-2xl hover:bg-sky-50 transition-colors cursor-pointer">
-              Donasi Agar Kami Sukses
+              {t("cta.button")}
             </button>
           </motion.div>
         </div>
@@ -602,24 +584,23 @@ export default function App() {
           <div className="col-span-1 md:col-span-2">
             <h3 className="text-2xl font-bold text-white mb-4">kita gagal.</h3>
             <p className="max-w-xs leading-relaxed mb-6">
-              Komunitas pengembang yang bangga akan setiap error, typo, dan
-              logic fallacy yang kami buat.
+              {t("footer.desc")}
             </p>
             <div className="flex gap-4">
               {[
                 {
                   name: "Twitter",
-                  label: "Ikuti kami di Twitter",
+                  label: t("footer.social.twitter"),
                   icon: Twitter,
                 },
                 {
                   name: "GitHub",
-                  label: "Lihat proyek kami di GitHub",
+                  label: t("footer.social.github"),
                   icon: Github,
                 },
                 {
                   name: "LinkedIn",
-                  label: "Hubungkan dengan kami di LinkedIn",
+                  label: t("footer.social.linkedin"),
                   icon: Linkedin,
                 },
               ].map((social) => (
@@ -636,33 +617,33 @@ export default function App() {
           </div>
 
           <div>
-            <h4 className="text-white font-bold mb-6">Navigasi</h4>
+            <h4 className="text-white font-bold mb-6">{t("footer.nav_header")}</h4>
             <ul className="space-y-4">
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Beranda
+                  {t("footer.home")}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Tentang Kami
+                  {t("footer.about")}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Jejak Kegagalan
+                  {t("footer.trace")}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Donasi
+                  {t("nav.donate")}
                 </a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-white font-bold mb-6">Hubungi Kami</h4>
+            <h4 className="text-white font-bold mb-6">{t("footer.contact_header")}</h4>
             <ul className="space-y-4">
               <li>error@kitagagal.com</li>
               <li>Jl. Buntu No. 404</li>
@@ -672,13 +653,13 @@ export default function App() {
         </div>
 
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-          <p>&copy; 2026 Kita Gagal. All rights reserved (maybe).</p>
+          <p>{t("footer.copyright")}</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-white">
-              Privacy Policy
+              {t("footer.privacy")}
             </a>
             <a href="#" className="hover:text-white">
-              Terms of Failure
+              {t("footer.terms")}
             </a>
           </div>
         </div>
