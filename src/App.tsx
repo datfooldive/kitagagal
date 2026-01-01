@@ -59,9 +59,16 @@ export default function App() {
 
       {/* Hero Section */}
       <section ref={targetRef} className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 overflow-hidden">
+        {/* Faded Grid Background */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-5xl [mask-image:radial-gradient(ellipse_at_top,white_20%,transparent_70%)]">
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+          </div>
+        </div>
+
         <motion.div 
           style={{ opacity, scale }}
-          className="max-w-7xl mx-auto text-center"
+          className="relative z-10 max-w-7xl mx-auto text-center"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -185,7 +192,7 @@ export default function App() {
              />
              <div className="absolute inset-0 bg-gradient-to-t from-sky-900/80 to-transparent flex items-end p-8">
                <p className="text-white text-lg font-medium italic">
-                 "Saya mencoba memperbaiki satu bug, dan melahirkan sepuluh bug baru. Indah sekali."
+                 "Saya mencoba memperbaiki satu bug, and melahirkan sepuluh bug baru. Indah sekali."
                </p>
              </div>
           </motion.div>
