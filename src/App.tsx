@@ -285,6 +285,66 @@ export default function App() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="py-24 px-6 bg-slate-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">Kata Mereka Yang Khilaf Donasi</h2>
+            <p className="text-slate-600 text-lg">Para dermawan yang terlanjur transfer dan tidak bisa refund.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Budi Santoso",
+                role: "Ex-Founder Startup Lele",
+                amount: "Rp 50.000",
+                quote: "Saya donasi karena kasihan, bukan karena percaya. Semoga buat beli kopi sachet, bukan buat sewa server AWS yang lupa dimatiin.",
+                image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop"
+              },
+              {
+                name: "Siti Aminah",
+                role: "Korban Investasi Bodong",
+                amount: "Rp 25.000",
+                quote: "Setidaknya donasi ke sini jelas peruntukannya: untuk merayakan kegagalan. Lebih transparan daripada laporan keuangan startup saya dulu.",
+                image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop"
+              },
+              {
+                name: "Kevin Anggara",
+                role: "Mahasiswa Abadi",
+                amount: "Rp 10.000",
+                quote: "Uang sisa jajan cilok. Saya donasi biar kalian semangat gagalnya, biar saya ada temannya.",
+                image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop"
+              }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.2, duration: 0.5 }}
+                className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm relative"
+              >
+                <div className="absolute top-8 right-8 text-6xl text-sky-100 font-serif leading-none">"</div>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-sky-100">
+                    <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900">{item.name}</h4>
+                    <p className="text-xs text-slate-500">{item.role}</p>
+                    <span className="inline-block mt-1 px-2 py-0.5 bg-sky-100 text-sky-700 text-xs font-bold rounded-full">
+                      Donasi: {item.amount}
+                    </span>
+                  </div>
+                </div>
+                <p className="text-slate-600 italic relative z-10">{item.quote}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-32 px-6 bg-sky-900 relative overflow-hidden text-center">
         <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
