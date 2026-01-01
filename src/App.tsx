@@ -1,6 +1,19 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
 import { useTheme } from './hooks/useTheme';
+import { 
+  Sun, 
+  Moon, 
+  Rocket, 
+  FileQuestion, 
+  RefreshCcw, 
+  Quote, 
+  Twitter, 
+  Github, 
+  Linkedin,
+  TriangleAlert,
+  ArrowRight
+} from 'lucide-react';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -60,7 +73,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-              !
+              <TriangleAlert size={20} fill="currentColor" className="text-white" />
             </div>
             <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">kita gagal.</span>
           </div>
@@ -75,9 +88,9 @@ export default function App() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-pointer"
-              aria-label="Toggle theme"
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             >
-              {theme === 'dark' ? '☀️' : '🌙'}
+              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -244,9 +257,21 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { title: "Mulai Semangat", desc: "Punya ide brilian jam 2 pagi, langsung coding tanpa dokumentasi.", icon: "🚀" },
-              { title: "Mulai Bingung", desc: "Kenapa kodenya jalan tapi hasilnya salah? Copilot pun menyerah.", icon: "🤔" },
-              { title: "Mulai Ulang", desc: "Hapus repo, uninstall VS Code, merenung di pojokan, lalu mulai lagi.", icon: "♻️" }
+              { 
+                title: "Mulai Semangat", 
+                desc: "Punya ide brilian jam 2 pagi, langsung coding tanpa dokumentasi.", 
+                icon: <Rocket size={48} className="text-sky-500" strokeWidth={1.5} />
+              },
+              { 
+                title: "Mulai Bingung", 
+                desc: "Kenapa kodenya jalan tapi hasilnya salah? Copilot pun menyerah.", 
+                icon: <FileQuestion size={48} className="text-sky-500" strokeWidth={1.5} />
+              },
+              { 
+                title: "Mulai Ulang", 
+                desc: "Hapus repo, uninstall VS Code, merenung di pojokan, lalu mulai lagi.", 
+                icon: <RefreshCcw size={48} className="text-sky-500" strokeWidth={1.5} />
+              }
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -256,7 +281,7 @@ export default function App() {
                 transition={{ delay: i * 0.2, duration: 0.5 }}
                 className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl dark:shadow-slate-900/50 transition-all"
               >
-                <div className="text-5xl mb-6" aria-hidden="true">{item.icon}</div>
+                <div className="mb-6" aria-hidden="true">{item.icon}</div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">{item.title}</h3>
                 <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.desc}</p>
               </motion.div>
@@ -273,7 +298,9 @@ export default function App() {
               <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">Galeri Error</h2>
               <p className="text-slate-600 dark:text-slate-400 text-lg">Keindahan dalam ketidaksempurnaan visual.</p>
             </div>
-            <button className="text-sky-600 dark:text-sky-400 font-bold hover:underline cursor-pointer">Lihat Semua Kegagalan &rarr;</button>
+            <button className="flex items-center gap-2 text-sky-600 dark:text-sky-400 font-bold hover:underline cursor-pointer group">
+              Lihat Semua Kegagalan <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            </button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 h-[600px] md:h-[400px]">
@@ -366,7 +393,9 @@ export default function App() {
                 transition={{ delay: i * 0.2, duration: 0.5 }}
                 className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm relative"
               >
-                <div className="absolute top-8 right-8 text-6xl text-sky-100 dark:text-sky-900/50 font-serif leading-none" aria-hidden="true">"</div>
+                <div className="absolute top-8 right-8 text-sky-100 dark:text-sky-900/50" aria-hidden="true">
+                  <Quote size={48} fill="currentColor" />
+                </div>
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-sky-100 dark:border-slate-700">
                     <img src={item.image} alt={`Foto profil ${item.name}`} title={`Foto profil ${item.name}`} className="w-full h-full object-cover" loading="lazy" />
@@ -424,12 +453,12 @@ export default function App() {
             </p>
             <div className="flex gap-4">
                {[
-                 { name: 'Twitter', label: 'Ikuti kami di Twitter' },
-                 { name: 'GitHub', label: 'Lihat proyek kami di GitHub' },
-                 { name: 'LinkedIn', label: 'Hubungkan dengan kami di LinkedIn' }
+                 { name: 'Twitter', label: 'Ikuti kami di Twitter', icon: Twitter },
+                 { name: 'GitHub', label: 'Lihat proyek kami di GitHub', icon: Github },
+                 { name: 'LinkedIn', label: 'Hubungkan dengan kami di LinkedIn', icon: Linkedin }
                ].map((social) => (
                  <a key={social.name} href="#" aria-label={social.label} className="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-900 flex items-center justify-center hover:bg-sky-600 hover:text-white transition-all">
-                   {social.name[0]}
+                   <social.icon size={20} />
                  </a>
                ))}
             </div>
